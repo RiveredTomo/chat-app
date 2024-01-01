@@ -1,37 +1,38 @@
 'use client'
 
 import { useState } from "react";
-import Test from '@/components/Test';
+import useUsername from '@/hooks/useInput'; // 仮定のパス
+import Chat from '@/components/Chat';
 
 
 export default function Home() {
-  const [name, setName] = useState('');
-  const [inputName, setInputName] = useState('');
+  const [text, setText] = useState('');
+  // const [name, setName] = useState('');
+  const username = useUsername(''); // useInput フックの使用
 
   // 入室ボタンクリック時に、名前入力欄に
   const hundleLoginClick = () => {
-    setInputName(name);
+    useUsername(text);
   }
 
+  // // 退室
+  // const hundleLogoutClick = () => {
+  //   setName('');
+  // }
+
   return (
-    <body
-      className="overflow-hidden"
-    >
-      <main
-        className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 p-24 m-auto"
-      >
-        {inputName
-          ?
-          <Test name={inputName} />
-          :
-          <div
-            className="flex flex-col gap-3 w-full m-auto"
-          >
+    <body className="overflow-hidden">
+      {username
+        ?
+        <Chat name={username} />
+        :
+        <main className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 p-24 m-auto">
+          <div className="flex flex-col gap-3 w-full m-auto">
             <input
               type="text"
               className="input input-bordered w-full"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               placeholder="名前を入力してね"
             />
             <button
@@ -41,74 +42,8 @@ export default function Home() {
               入　室
             </button>
           </div>
-        }
-      </main>
+        </main>
+      }
     </body>
   )
-
-
-  // return (
-  //   <body
-  //     className="overflow-hidden"
-  //   >
-
-  //     <main className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 p-24 m-auto">
-  //       {/* タイムライン */}
-  //       <div
-  //         className="space-y-5 h-full w-full max-w-full overflow-y-auto"
-  //       >
-
-  //         <div
-  //           className="w-fit"
-  //         >
-  //           <div
-  //             className="bg-primary p-3 rounded-lg"
-  //           >
-  //             <p
-  //               className="font-bold"
-  //             >Name:
-  //             </p>
-  //             <p
-  //               className="ps-3"
-  //             >
-  //               メッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージメッセージ
-  //             </p>
-  //           </div>
-  //           <p
-  //             className="text-right"
-  //           >yyyy-mm-dd hh:mm:ss
-  //           </p>
-  //         </div>
-
-  //       </div>
-  //       {/* 入力エリア */}
-  //       <div
-  //         className="flex gap-3 w-full"
-  //       >
-  //         <input type="text"
-  //           className="input input-bordered"
-  //           placeholder="Your Name"
-  //         />
-  //         <div
-  //           className="join w-full"
-  //         >
-  //           <input
-  //             type="text"
-  //             className="input input-bordered join-item w-full"
-  //             placeholder="Input Message..."
-  //           />
-  //           <button
-  //             className='btn btn-primary join-item'
-  //           >投稿
-  //           </button>
-  //         </div>
-  //         <button
-  //           className="btn btn-secondary"
-  //         >
-  //           なんかボタン
-  //         </button>
-  //       </div>
-  //     </main>
-  //   </body>
-  // )
 }

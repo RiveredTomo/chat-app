@@ -63,19 +63,14 @@ export default function Chat({ name }: Props) {
     setInputText("");
   };
 
-  const hundleLogoutClick = () =>{
-
-  }
-
-
   return (
-    <main className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 p-24 m-auto">
+    <div className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 pt-32 pb-24 px-3 m-auto">
       {/* タイムライン */}
-      <div className="space-y-5 h-full w-full max-w-full overflow-y-auto" >
+      <div className="h-full w-full max-w-full overflow-y-auto flex flex-col gap-5">
 
-        {messageText.map((item) => (
-          <div className="w-fit" key={item.id} data-user-id={item.name}>
-            <div className="bg-primary p-3 rounded-lg">
+        {messageText.map((item, i) => (
+          <div className={name == item.name ? "w-fit ml-auto" : "w-fit"} key={item.id} data-user-id={item.name} style={{ order: -i }}>
+            <div className={name == item.name ? "bg-secondary p-3 rounded-lg" : "bg-primary p-3 rounded-lg"}>
               <p className="font-bold">{item.name ? item.name : "名無し"}:</p>
               <p className="ps-3">{item.message}</p>
             </div>
@@ -89,19 +84,12 @@ export default function Chat({ name }: Props) {
         className="flex gap-3 w-full"
         onSubmit={onSubmitNewMessage}
       >
-        <button
-          className="btn btn-secondary"
-          onClick={hundleLogoutClick}
-        >
-          退　室
-        </button>
         <input
-          type="text"
+          type="hidden"
           name="name"
           className="input input-bordered"
           placeholder="Your Name"
           value={name}
-          readOnly
         />
         <div className="join w-full">
           <input
@@ -111,6 +99,7 @@ export default function Chat({ name }: Props) {
             placeholder="メッセージを入れてね"
             value={inputText}
             onChange={onChangeInputText}
+            autoComplete="off"
           />
           <button
             className='btn btn-primary join-item'
@@ -120,6 +109,6 @@ export default function Chat({ name }: Props) {
           </button>
         </div>
       </form>
-    </main>
+    </div>
   )
 }

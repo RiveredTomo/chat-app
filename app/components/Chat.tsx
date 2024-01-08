@@ -1,9 +1,9 @@
 'use client'
 
-import { Database } from "@/lib/supabase";
-import { TABLE_NAME, addSupabaseData, fetchDatabase } from "@/lib/supabaseFunctions";
+import { Database } from "@/lib/supabaseMessage";
+import { TABLE_NAME, addSupabaseData, fetchDatabase } from "@/lib/supabaseMessageFunctions";
 import { useEffect, useState } from "react";
-import supabase from "@/lib/supabase";
+import supabase from "@/lib/supabaseMessage";
 import { format } from 'date-fns';
 
 type Props = {
@@ -70,7 +70,7 @@ export default function Chat({ name }: Props) {
 
         {messageText.map((item, i) => (
           <div className={name == item.name ? "w-fit ml-auto" : "w-fit"} key={item.id} data-user-id={item.name} style={{ order: -i }}>
-            <div className={name == item.name ? "bg-secondary p-3 rounded-lg" : "bg-primary p-3 rounded-lg"}>
+            <div className={name == item.name ? "bg-secondary text-secondary-content p-3 rounded-lg" : "bg-primary text-primary-content p-3 rounded-lg"}>
               <p className="font-bold">{item.name ? item.name : "名無し"}:</p>
               <p className="ps-3">{item.message}</p>
             </div>

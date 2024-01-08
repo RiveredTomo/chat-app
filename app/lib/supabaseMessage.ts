@@ -1,11 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 
 export type Database = {
-    id: string;
-    name: string;
-    message: string;
-    created_at: string;
-    is_ai: boolean;
+  id: string;
+  name: string;
+  message: string;
+  created_at: string;
+  is_ai: boolean;
+  // count: number;
 };
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;

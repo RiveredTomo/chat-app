@@ -1,4 +1,4 @@
-import supabase, { Database } from "./supabase";
+import supabase, { Database } from "./supabaseMessage";
 
 // テーブル名
 export const TABLE_NAME = "messages";

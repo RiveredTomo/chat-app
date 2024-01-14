@@ -1,5 +1,6 @@
 'use client'
 
+import { Database } from "@/lib/supabaseMessage";
 import { fetchDatabaseFive, addSupabaseData } from "@/lib/supabaseMessageFunctions";
 import { useState } from "react";
 
@@ -14,7 +15,7 @@ export const AI = () => {
     const chatHistory = await fetchDatabaseFive();
 
     // プロンプトとして渡す形に整形
-    const chatList = chatHistory.map(item => `${item.name}：${item.message}`).reverse();
+    const chatList = (chatHistory as Database[]).map(item => `${item.name}：${item.message}`).reverse();
     const userPrompt = chatList.join('\n');
 
     // APIルートを使用し、Gemineを呼び出す

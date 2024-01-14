@@ -4,9 +4,15 @@ import { Database } from "@/lib/supabaseMessage";
 import { fetchDatabaseFive, addSupabaseData } from "@/lib/supabaseMessageFunctions";
 import { useState } from "react";
 
-export const AI = () => {
+type Props = {
+  displayMessages: number
+}
 
-  const [isDisabled, setIsDisabled] = useState("");
+export const AI = ({ displayMessages }: Props) => {
+
+  const [isDisabled, setIsDisabled] = useState("true");
+
+  if (displayMessages >= 5 && isDisabled !== "") setIsDisabled("")
 
   const handleAIClick = async () => {
     setIsDisabled("true");
@@ -32,8 +38,6 @@ export const AI = () => {
 
     // AIの発言としてDBに追加
     if (data.text !== "") await addSupabaseData({ name: 'AI', message: data.text, is_ai: true });
-
-    await setIsDisabled("");
   }
 
   return (

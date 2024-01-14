@@ -110,7 +110,7 @@ export default function Chat({ name }: Props) {
             投　稿
           </button>
         </div>
-        <AI />
+        <AI displayMessages={messageText.length} />
       </form>
     </div>
   )

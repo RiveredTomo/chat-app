@@ -16,7 +16,6 @@ export async function POST(req: NextRequest) {
   const model = await genAI.getGenerativeModel({ model: "gemini-pro" });
 
   try {
-
     const prompt = "あなたはチャットアプリの会話に参加する人物です。あなたに名前はありません。以下に会話内容が渡されますので、この会話の流れに入って発言をしてください。渡される会話内容には、あなたは含まれていません。発言は50文字程度以内でお願いします。\n---" + chatHistory + "\n---";
 
     const result = await model.generateContent(prompt);
@@ -28,7 +27,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json({
-      text: error
+      text: "Unable to process the prompt. Please try again."
     });
   }
 }

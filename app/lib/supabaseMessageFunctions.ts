@@ -24,6 +24,22 @@ export const fetchDatabase = async () => {
   }
 }
 
+// 最新5件を取得
+export const fetchDatabaseFive = async () => {
+  try {
+    const { data } = await supabase
+      .from(TABLE_NAME)
+      .select("name, message")
+      .eq("is_ai", false) // WHERE is_ai = false
+      .order("created_at", { ascending: false }) // created_at DESC
+      .limit(5);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 type InsertProps = Pick<Database, "name" | "message" | "is_ai">;
 
 // データの追加

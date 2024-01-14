@@ -5,6 +5,7 @@ import { TABLE_NAME, addSupabaseData, fetchDatabase } from "@/lib/supabaseMessag
 import { useEffect, useState } from "react";
 import supabase from "@/lib/supabaseMessage";
 import { format } from 'date-fns';
+import { AI } from '@/components/AI'
 
 type Props = {
   name: string
@@ -70,7 +71,7 @@ export default function Chat({ name }: Props) {
 
         {messageText.map((item, i) => (
           <div className={name == item.name ? "w-fit ml-auto" : "w-fit"} key={item.id} data-user-id={item.name} style={{ order: -i }}>
-            <div className={name == item.name ? "bg-secondary text-secondary-content p-3 rounded-lg" : "bg-primary text-primary-content p-3 rounded-lg"}>
+            <div className={item.is_ai === true ? "bg-accent text-accent-content p-3 rounded-lg" : name == item.name ? "bg-secondary text-secondary-content p-3 rounded-lg" : "bg-primary text-primary-content p-3 rounded-lg"}>
               <p className="font-bold">{item.name ? item.name : "名無し"}:</p>
               <p className="ps-3">{item.message}</p>
             </div>
@@ -95,19 +96,21 @@ export default function Chat({ name }: Props) {
           <input
             type="text"
             name="message"
-            className="input input-bordered join-item w-full"
+            className="input input-bordered input-primary join-item w-full"
             placeholder="メッセージを入れてね"
             value={inputText}
             onChange={onChangeInputText}
             autoComplete="off"
           />
           <button
+            type="submit"
             className='btn btn-primary join-item'
             disabled={inputText === ""}
           >
             投　稿
           </button>
         </div>
+        <AI />
       </form>
     </div>
   )

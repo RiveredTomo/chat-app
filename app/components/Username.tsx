@@ -46,7 +46,7 @@ export default function Username() {
         </div>
         <input
           type="text"
-          className="input input-bordered w-full"
+          className="input input-bordered input-primary w-full"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="名前を入力してね"

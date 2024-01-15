@@ -30,7 +30,7 @@ export const fetchDatabaseFive = async () => {
     const { data } = await supabase
       .from(TABLE_NAME)
       .select("name, message")
-      .eq("is_ai", false) // WHERE is_ai = false
+      // .eq("is_ai", false) // WHERE is_ai = false
       .order("created_at", { ascending: false }) // created_at DESC
       .limit(5);
 

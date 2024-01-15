@@ -5,7 +5,7 @@ import { TABLE_NAME, addSupabaseData, fetchDatabase } from "@/lib/supabaseMessag
 import { useEffect, useState } from "react";
 import supabase from "@/lib/supabaseMessage";
 import { format } from 'date-fns';
-import { AI } from '@/components/AI'
+import { callAI } from '@/lib/callAI'
 
 type Props = {
   name: string
@@ -62,6 +62,11 @@ export default function Chat({ name }: Props) {
     if (inputText === "") return;
     addSupabaseData({ name: name, message: inputText, is_ai: false }); // DBに追加
     setInputText("");
+    // 5の倍数ならAIを呼び出すフラグを立て、読み込み後にAIの関数を実行
+    if ((messageText.length + 1) % 5 === 0) {
+      console.log("AIフラグを呼びます");
+      callAI();
+    };
   };
 
   return (
@@ -110,7 +115,6 @@ export default function Chat({ name }: Props) {
             投　稿
           </button>
         </div>
-        <AI displayMessages={messageText.length} />
       </form>
     </div>
   )

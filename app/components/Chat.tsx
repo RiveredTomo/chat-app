@@ -62,21 +62,21 @@ export default function Chat({ name }: Props) {
     if (inputText === "") return;
     addSupabaseData({ name: name, message: inputText, is_ai: false }); // DBに追加
     setInputText("");
-    // 5の倍数ならAIを呼び出すフラグを立て、読み込み後にAIの関数を実行
+    // 5の倍数ならAIを呼び出す
     if ((messageText.length + 1) % 5 === 0) {
-      console.log("AIフラグを呼びます");
+      console.log("AIを呼びます");
       callAI();
     };
   };
 
   return (
-    <div className="flex h-screen min-h-screen max-w-7xl flex-col items-start justify-between gap-3 pt-32 pb-24 px-3 m-auto">
+    <div className="flex h-screen min-h-screen max-w-5xl flex-col items-start justify-between gap-6 pt-24 pb-12 px-3 m-auto">
       {/* タイムライン */}
       <div className="h-full w-full max-w-full overflow-y-auto flex flex-col gap-5">
 
         {messageText.map((item, i) => (
-          <div className={name == item.name ? "w-fit ml-auto" : "w-fit"} key={item.id} data-user-id={item.name} style={{ order: -i }}>
-            <div className={item.is_ai === true ? "bg-accent text-accent-content p-3 rounded-lg" : name == item.name ? "bg-secondary text-secondary-content p-3 rounded-lg" : "bg-primary text-primary-content p-3 rounded-lg"}>
+          <div className={`w-fit ${name == item.name ? 'ml-auto' : ''}`} key={item.id} data-user-id={item.name} style={{ order: -i }}>
+            <div className={`p-3 rounded-lg ${item.is_ai === true ? 'bg-accent text-accent-content' : name == item.name ? 'bg-secondary text-secondary-content' : 'bg-primary text-primary-content'}`}>
               <p className="font-bold">{item.name ? item.name : "名無し"}:</p>
               <p className="ps-3">{item.message}</p>
             </div>

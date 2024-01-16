@@ -22,7 +22,7 @@ export default function Username() {
     return (
       <main>
         <div className='absolute bg-primary w-full text-center'>
-          <div className='flex items-center justify-between max-w-7xl p-3 m-auto'>
+          <div className='flex items-center justify-between max-w-5xl p-3 m-auto'>
             <div className='text-lg text-primary-content'>
               こんにちは、<span className='font-bold text-2xl'>{username}</span> さん
             </div>
@@ -41,7 +41,7 @@ export default function Username() {
   } else {
     return (
       <main className="w-full h-screen m-auto max-w-5xl flex flex-col justify-center gap-3">
-        <div className='text-center text-4xl font-black mb-32'>
+        <div className="text-center text-4xl font-black mb-32">
           AI乱入チャット
         </div>
         <input

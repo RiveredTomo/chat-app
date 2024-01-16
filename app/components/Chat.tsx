@@ -109,7 +109,7 @@ export default function Chat({ name }: Props) {
           />
           <button
             type="submit"
-            className='btn btn-primary join-item'
+            className="btn btn-primary join-item"
             disabled={inputText === ""}
           >
             投　稿

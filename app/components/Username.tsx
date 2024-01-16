@@ -21,10 +21,10 @@ export default function Username() {
   if (username) {
     return (
       <main>
-        <div className='absolute bg-primary w-full text-center'>
-          <div className='flex items-center justify-between max-w-5xl p-3 m-auto'>
-            <div className='text-lg text-primary-content'>
-              こんにちは、<span className='font-bold text-2xl'>{username}</span> さん
+        <div className="absolute bg-primary w-full text-center">
+          <div className="flex items-center justify-between max-w-5xl p-3 m-auto">
+            <div className="text-lg text-primary-content">
+              こんにちは、<span className="font-bold text-2xl">{username}</span> さん
             </div>
             <button
               className="btn btn-error"
